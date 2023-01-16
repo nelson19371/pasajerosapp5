@@ -1,7 +1,22 @@
 import { useNavigate } from "react-router-dom"
 import logo from '../../assets/heroes/icono.png'
+import {useForm} from '../../hooks/'
 
 export const LoginPage = () => {
+
+    const {email,password, onInputChange, formState} = useForm({
+      email: 'fernando@google.com',
+      password: '123456'
+    })
+
+
+    const onSubmit = (event) =>{
+      event.preventDefault();
+      console.log({email,password});
+    }
+
+
+
   
   const navigate = useNavigate();
   const onLogin = () =>{
@@ -29,19 +44,19 @@ export const LoginPage = () => {
 
               <form action="#">
                 <div className="mb-4">
-                    <label for="email" className="form-label">Correo Electronico</label>
-                    <input type="email" className="form-control"/>
+                    <label htmlFor="email" className="form-label">Correo Electronico</label>
+                    <input type="email" className="form-control" name="email" onChange={onInputChange} value={email}/>
                 </div>
                 <div className="mb-4">
-                <label for="password" className="form-label">Contraseña</label>
-                    <input type="password" className="form-control"/>
+                <label htmlFor="password" className="form-label">Contraseña</label>
+                    <input type="password" className="form-control"  name="password" onChange={onInputChange} value={password}/>
                 </div>
                 <div className="mb-4 form-check">
                       <input type="checkbox" name="conected" className="form-check-input"/>
-                      <label for="conected" className="form-check-label">Mantenerme conectado</label>
+                      <label htmlFor="conected" className="form-check-label">Mantenerme conectado</label>
                 </div> 
                 <div className="d-grid">
-                    <button type="submit" className="btn btn-warning" onClick={onLogin} id="bot">Iniciar Sesión</button>
+                    <button type="submit" className="btn btn-warning" onClick={onSubmit} id="bot">Iniciar Sesión</button>
                 </div>
                 <div className="mb-4 mt-3">
                 TRACTECK DERECHOS RESERVADOS
